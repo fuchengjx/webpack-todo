@@ -7,7 +7,7 @@ const isDev = process.env.NODE_ENV === "development"    //判断是否为测试�
 
 const config = {
     target: "web",                                      //设置webpack的编译目标是web平台
-    entry: path.join(__dirname,'src/index.js'),         //声明js文件入口,__dirname就是我们文件的根目录,用join拼接
+    entry: path.join(__dirname,'../src/index.js'),         //声明js文件入口,__dirname就是我们文件的根目录,用join拼接
     output:{                                            //声明出口文件
         filename: 'bundle.js',                          //将挂载的App全部打包成一个bundle.js,在浏览器中可以直接运行的代码  
         path: path.join(__dirname,'dist')               //bundle.js保存的位置
@@ -36,7 +36,7 @@ const config = {
                         loader: 'url-loader',           //url-loader实际上依赖于file-loader,file-loader处理完文件可以保存为一个文件供处理
                         options: { 
                             limit: 1024,                //url-loader的好处是可以加一个限制的大小,对于小图片,在范围内可直接将图片转换成base64码直接存放在js中,以减少http请求.
-                            name: '[name].[ext]'        //输出文件的名字,[name] 文件原名,[ext]文件扩展名.
+                            name: 'resoures/[path][name].[hash].[ext]'        //输出文件的名字,[name] 文件原名,[ext]文件扩展名. 让静态资源生成的文件目录更好看一点
                         }
                     }
                 ]
@@ -86,7 +86,7 @@ if(isDev){
     )
 } else{
     config.entry = {
-        app: path.join(__dirname,'src/index.js'),
+        app: path.join(__dirname,'../src/index.js'),
         vendor: ['vue']   
     }
     config.output.filename = '[name].[chunkhash:8].js'  //此处一定是chunkhash,因为用hash时app和vendor的hash码是一样的了,这样每次业务代码更新,vendor也会更新,也就没有了意义.
