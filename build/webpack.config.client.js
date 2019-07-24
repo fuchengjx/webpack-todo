@@ -18,9 +18,12 @@ const defaultPluins = [  //主要为了方便才这样做 因为在dev和非dev�
  
 const devServer = {                                //这个devServer的配置是在webpack2.x以后引入的,1.x是没有的
   port: 8000,                                     //访问的端口号
-  host: '127.0.0.1',                              //可以设置0.0.0.0 ,这样设置你可以通过127.0.0.1或则localhost去访问
+  host: '0.0.0.0',                              //可以设置0.0.0.0 ,这样设置你可以通过127.0.0.1或则localhost去访问
   overlay: {
     errors: true,                               //编译中遇到的错误都会显示到网页中去
+  },
+  historyApiFallback: {  // 因为开起来history模式， 在没有匹配到正确的路由时 返回index.html
+    index: '/index.html'
   },
   // open: true ,                                 //项目启动时,会默认帮你打开浏览器
   hot: true                                       //在单页面应用开发中,我们修改了代码后是整个页面都刷新,开启hot后,将只刷新对应的组件

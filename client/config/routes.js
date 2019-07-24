@@ -8,7 +8,6 @@ export default [
   },
   {
     path: '/app',
-    name: Todo,
     component: Todo
   },
   {
