@@ -19,6 +19,7 @@
             @togole="togoleFilter"
             @clearAllCompleted="clearAllCompleted"
         ></Tabs>
+        <!-- <router-view /> -->
     </section>
 </template>
 
@@ -28,6 +29,11 @@ import Tabs from './tabs.vue'
 let id = 0
 
 export default {
+//   beforeRouteLeave (to, from, next) {  // 在你输入表单时 误点了其它跳转页面 将询问你是否离开
+//   if (global.confirm('are you sure?')) {
+//     next()  // 如果要让这个钩子跳转 就要执行这个next
+//   }
+// },
     data() {
         return {
             todos: [],

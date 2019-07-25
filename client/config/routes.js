@@ -1,5 +1,4 @@
-import Todo from '../views/todo/todo.vue';
-import Login from '../views/login/login.vue';
+// import Todo from '../views/todo/todo.vue';
 
 export default [
   {
@@ -8,10 +7,21 @@ export default [
   },
   {
     path: '/app',
-    component: Todo
+    name: 'app',
+    component: () => import('../views/todo/todo.vue'), //异步组件 使首屏渲染更快 需要安装syntax-dynamic-import插件 才能解析import语法
+    meta: {
+      title: 'this is app',
+      desciption: 'this is description'
+    },
+    // children: [
+    //   {
+    //     path: 'test',
+    //     component: Login
+    //   }
+    // ]
   },
   {
     path: '/login',
-    component: Login
+    component: () => import('../views/login/login.vue')
   }
 ]
