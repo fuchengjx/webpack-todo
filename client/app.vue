@@ -34,6 +34,18 @@ export default {
         console.log('i am a transition', el)
       }
     },
+    mounted() {
+      console.log('store', this.$store.state.count)
+      let i = 1
+      setInterval(() => {
+        this.$store.commit('updateCount', i++)
+      }, 1000);
+    },
+    computed: {
+      count () {
+        return this.$store.state.count
+      }
+    },
 }
 </script>
 
