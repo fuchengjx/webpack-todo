@@ -3,7 +3,7 @@
      
         <div id="cover"></div>
         <Header></Header>
-         <p>{{fullName}}</p>
+         <p>{{fullName}} {{count}}</p>
         <!-- <Todo></Todo> -->
         <transition name="fade">
           <router-view />
@@ -13,6 +13,9 @@
 </template>
 
 <script>
+import {
+  mapState, mapGetters
+} from 'vuex';
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
 // import Todo from './views/todo/todo.vue'
@@ -41,12 +44,21 @@ export default {
       }, 1000);
     },
     computed: {
-      count () {
-        return this.$store.state.count
-      },
-      fullName () {
-        return this.$store.getters.fullName
-      }
+      // ...mapState(['count']),  // 非常方便的获得store里的数据
+      // ...mapState({  // 获得不同名的state
+      //   counter: count
+      // }),
+      ...mapState({
+        counter: (state) => state.count
+      }),
+      // count () {
+      //   return this.$store.state.count
+      // },
+
+      ...mapGetters(['fullName'])
+      // fullName () {
+      //   return this.$store.getters.fullName
+      // }
     },
 }
 </script>
