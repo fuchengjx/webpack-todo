@@ -35,7 +35,6 @@ export default {
       }
     },
     mounted() {
-      console.log('store', this.$store.state.count)
       let i = 1
       setInterval(() => {
         this.$store.commit('updateCount', i++)

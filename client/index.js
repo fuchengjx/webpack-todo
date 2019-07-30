@@ -2,14 +2,13 @@ import Vue from 'vue'   //引用vue类库
 import App from './app.vue'  
 import routes from './config/routes'
 import VueRouter from 'vue-router'
-// import './assets/styles/test.css'
-// import './assets/styles/test-stylus.styl'
-// import './assets/images/bg.png'
-// 开发todo应用时用不到以上这些,故注释掉
+import Vuex from 'vuex';
+Vue.use(Vuex) 
 Vue.use(VueRouter)
 import './assets/styles/global.styl'
 
-import store from './store/sotre';
+import createStore from './store/sotre';
+const store = createStore()
 
 const router = new VueRouter({
   routes,

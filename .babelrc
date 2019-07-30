@@ -4,7 +4,7 @@
     ],
     "plugins": [
         "transform-vue-jsx",
-        "syntax-dynamic-import"    
+        "syntax-dynamic-import" //安装这个插件 使其可以解析import语法 在引入异步组件中
     ]
 }
 
