@@ -3,7 +3,8 @@
      
         <div id="cover"></div>
         <Header></Header>
-         <p>{{fullName}} {{count}}</p>
+         <p>{{fullName}} </p>
+         <p>{{counter}}</p>
         <!-- <Todo></Todo> -->
         <transition name="fade">
           <router-view />
@@ -14,7 +15,7 @@
 
 <script>
 import {
-  mapState, mapGetters
+  mapState, mapGetters, mapActions, mapMutations
 } from 'vuex';
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
@@ -35,13 +36,18 @@ export default {
     methods: {
       transitionComplete: function(el) {
         console.log('i am a transition', el)
-      }
+      },
+      ...mapActions(['updateCountAsync'])
     },
     mounted() {
       let i = 1
-      setInterval(() => {
-        this.$store.commit('updateCount', i++)
-      }, 1000);
+      // this.$store.dispatch('updateCountAsync',{
+      //   num: 5,
+      //   time: 2000
+      // })
+      // setInterval(() => {
+      //   this.$store.commit('updateCount', i++)
+      // }, 1000);
     },
     computed: {
       // ...mapState(['count']),  // 非常方便的获得store里的数据
@@ -55,7 +61,7 @@ export default {
       //   return this.$store.state.count
       // },
 
-      ...mapGetters(['fullName'])
+      ...mapGetters(['fullName'])  //使用getters
       // fullName () {
       //   return this.$store.getters.fullName
       // }

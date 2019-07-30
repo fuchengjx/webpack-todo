@@ -3,7 +3,7 @@ import App from './app.vue'
 import routes from './config/routes'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex';
-Vue.use(Vuex) 
+Vue.use(Vuex)
 Vue.use(VueRouter)
 import './assets/styles/global.styl'
 
@@ -27,8 +27,9 @@ const router = new VueRouter({
 
 const root = document.createElement('div')  //创建div节点
 document.body.appendChild(root);            //将div节点添加到body下
-
+const isDev = process.env.NODE_ENV === 'development'
 new Vue({
+    strict: isDev,  // 这样就规定了数据的单向传递 只能从mutation改变store的值。不能直接修改store的值  在开发环境中用，在生产环境中要关掉。
     router,
     store,
     render: (h) => h(App)  
