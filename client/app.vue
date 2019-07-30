@@ -3,7 +3,7 @@
      
         <div id="cover"></div>
         <Header></Header>
-         
+         <p>{{fullName}}</p>
         <!-- <Todo></Todo> -->
         <transition name="fade">
           <router-view />
@@ -43,6 +43,9 @@ export default {
     computed: {
       count () {
         return this.$store.state.count
+      },
+      fullName () {
+        return this.$store.getters.fullName
       }
     },
 }

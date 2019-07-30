@@ -1,9 +1,12 @@
-import Vue from 'vue';
+import Vuex from 'vuex';
 import defaultState from './state/state';
 import mutations from './mutations/mutations';
-const store = new Vuex.Store({
-  state: defaultState,
-  mutations
-})
+import getters from './getters/getters';
 
-export default store
+export default () => {
+  return  new Vuex.Store({
+    state: defaultState,
+    mutations,
+    getters
+  })
+}
