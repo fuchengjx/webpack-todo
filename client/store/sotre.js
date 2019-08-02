@@ -10,23 +10,23 @@ export default () => {
     mutations,
     getters,
     actions,
-    modules: {  // vuex模块作用域
-      a: {
-        state: {
-          text: 'i am a text'
-        },
-        mutations: {
-          updateText (state, text) {
-            console.log('a.text', state)
-            state.text = text
-          }
-        }
-      },
-      b: {
-        state: {
-          text: 'i am b text'
-        }
-      }
-    }
+    // modules: {  // vuex模块作用域
+    //   a: {
+    //     state: {
+    //       text: 'i am a text'
+    //     },
+    //     mutations: {
+    //       updateText (state, text) {
+    //         console.log('a.text', state)
+    //         state.text = text
+    //       }
+    //     }
+    //   },
+    //   b: {
+    //     state: {
+    //       text: 'i am b text'
+    //     }
+    //   }
+    // }
   })
 }

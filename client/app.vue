@@ -4,8 +4,6 @@
         <div id="cover"></div>
         <Header></Header>
          <p>{{fullName}} </p>
-         <p>{{counter}}  {{this.counter}}</p>
-         <p>{{text}}</p>
         <!-- <Todo></Todo> -->
         <transition name="fade">
           <router-view />
@@ -40,8 +38,8 @@ export default {
       },
       todoMap: function () {
         console.log('Todo Map')
-        // this.updateCount(101)
-        this.$store.dispatch('updateCountAsync', {num: 5, time: 2000})
+        this.updateCount(101)  //根本没用 这种映射，可能是由于module的关系。
+        // this.$store.dispatch('updateCountAsync', {num: 5, time: 2000})
         // this.updateCountAsync({num: 5, time: 2000})
       },
     },
@@ -65,7 +63,7 @@ export default {
       // }),
       ...mapState({  // 将vuex state数据映射到计算属性里面，映射的名字为counter 所以直接用this.counter就能获取到state.count的值
         counter: (state) => state.count,  
-        text: (state) => state.a.text  // 获取a模块里的text
+        // text: (state) => state.a.text  // 获取a模块里的text
       }),
       // count () {
       //   return this.$store.state.count
