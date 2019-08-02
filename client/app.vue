@@ -4,7 +4,8 @@
         <div id="cover"></div>
         <Header></Header>
          <p>{{fullName}} </p>
-         <p>{{counter}}</p>
+         <p>{{counter}}  {{this.counter}}</p>
+         <p>{{text}}</p>
         <!-- <Todo></Todo> -->
         <transition name="fade">
           <router-view />
@@ -37,10 +38,18 @@ export default {
       transitionComplete: function(el) {
         console.log('i am a transition', el)
       },
-      ...mapActions(['updateCountAsync'])
+      todoMap: function () {
+        console.log('Todo Map')
+        // this.updateCount(101)
+        this.$store.dispatch('updateCountAsync', {num: 5, time: 2000})
+        // this.updateCountAsync({num: 5, time: 2000})
+      },
     },
+    ...mapActions(['updateCountAsync']),  
+    ...mapMutations(['updateCount']), //...mapMutation把本组件的mutations映射到updateCount方法里(updateCount在mutations.js里)
     mounted() {
-      let i = 1
+      this.todoMap()
+      let i   = 1
       // this.$store.dispatch('updateCountAsync',{
       //   num: 5,
       //   time: 2000
@@ -54,8 +63,9 @@ export default {
       // ...mapState({  // 获得不同名的state
       //   counter: count
       // }),
-      ...mapState({
-        counter: (state) => state.count
+      ...mapState({  // 将vuex state数据映射到计算属性里面，映射的名字为counter 所以直接用this.counter就能获取到state.count的值
+        counter: (state) => state.count,  
+        text: (state) => state.a.text  // 获取a模块里的text
       }),
       // count () {
       //   return this.$store.state.count

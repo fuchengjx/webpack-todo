@@ -34,7 +34,7 @@ export default {
 //     next()  // 如果要让这个钩子跳转 就要执行这个next
 //   }
 // },
-    data() {
+    data() { 
         return {
             todos: [],
             filter: 'all'
