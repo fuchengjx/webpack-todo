@@ -1,5 +1,4 @@
 const path = require('path')                            //path是Nodejs中的基本包,用来处理路径
-const HTMLPlugin = require('html-webpack-plugin')       //引入html-webpack-plugin
 const webpack = require("webpack")                      //引入webpack
 const merge = require('webpack-merge')        //合并webpack config
 const ExtractPlugin = require("extract-text-webpack-plugin")
