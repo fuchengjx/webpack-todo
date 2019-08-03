@@ -7,6 +7,7 @@ const MemoryFS = require('memory-fs')  //跟node fs的作用类似  将文件写
 const webpack = require('webpack')
 const VueServerRenderer = require('vue-server-renderer')
 
+const serverRender = require('./server-render')
 const serverConfig = require('../../build/webpack.config.server')
 
 // 在nodejs中编译webpack 让它跑起来
@@ -20,14 +21,15 @@ serverCompiler.watch({}, (err, stats) => {  // 每次webpack打包都会执行�
     throw err
   }
   stats = stats.toJson()
-  stats.hasErrors.forEach(err => console.log(err))  // 非webpack的错误 从这里打印
-  stats.hasWarnings.forEach(warn => console.warn(err))
+  stats.errors.forEach(err => console.log(err))  // 非webpack的错误 从这里打印
+  stats.warnings.forEach(err => console.warn(err)) 
 
   const bundlePath = path.join(
     serverConfig.output.path,
     'vue-ssr-server-bundle.json'  //打包生成得到这个json文件用来渲染。
   )
   bundle = JSON.parse(mfs.readFileSync(bundlePath, 'utf-8'))  // 将读出的字符串装换为json
+  console.log('new bundle generated ')
 })
 
 const handleSSR = async (ctx) => {
@@ -48,4 +50,10 @@ const handleSSR = async (ctx) => {
     inject: false,
     clientManifest  //将这些数据填入到ejs bundle里
   })
+  
+  await serverRender(ctx, renderer, template)
 }
+
+const router = new Router()
+router.get('*', handleSSR)  //所有的请求都通过handleSSR来处理
+modules.exports = router

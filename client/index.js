@@ -27,12 +27,12 @@ const router = new VueRouter({
 
 const root = document.createElement('div')  //创建div节点
 document.body.appendChild(root);            //将div节点添加到body下
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === 'development' 
 new Vue({
     strict: isDev,  // 这样就规定了数据的单向传递 只能从mutation改变store的值。不能直接修改store的值  在开发环境中用，在生产环境中要关掉。
     router,
     store,
-    render: (h) => h(App)  
+    render: (h) => h(App)   
     //vue在创建Vue实例时,通过调用render方法来渲染实例的DOM树,也就是这个组件渲染的是App的内容
     //vue在调用render方法时,会传入一个createElement函数作为参数,也就是这里的h的实参是createElement函数,然后createElement会以App为参数进行调用
 }).$mount(root) //挂载html的root节点下面

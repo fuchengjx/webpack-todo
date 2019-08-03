@@ -9,7 +9,8 @@
     "build": "npm run clean && npm run build:client",
     "clean": "rimraf dist",
     "pratice": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.pratice.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
+    "dev:server": "cross-env NODE_ENV=development node server/server.js"
   },
   "author": "Jasonccj",
   "license": "ISC",
@@ -47,7 +48,6 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.6.2",
-    "vue": "^2.5.13",
     "vue-loader": "^13.6.0",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^3.10.0",
