@@ -38,7 +38,7 @@ export default {
       },
       todoMap: function () {
         console.log('Todo Map')
-        this.updateCount(101)  //根本没用 这种映射，可能是由于module的关系。
+        // this.updateCount(101)  //根本没用 这种映射，可能是由于module的关系。
         // this.$store.dispatch('updateCountAsync', {num: 5, time: 2000})
         // this.updateCountAsync({num: 5, time: 2000})
       },

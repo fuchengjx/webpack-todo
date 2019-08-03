@@ -3,8 +3,8 @@ const webpack = require("webpack")                      //引入webpack
 const merge = require('webpack-merge')        //合并webpack config
 const ExtractPlugin = require("extract-text-webpack-plugin")
 const baseConfig = require('./webpack.config.base')
-const VueServerPlugin = require('vue-server-renderer/server-plugin')
-
+const VueServerPlugin = require('vue-server-renderer/server-plugin')  // 帮我们把很多复杂的逻辑处理
+ 
 
 let config
 
@@ -13,8 +13,8 @@ config = merge(baseConfig, {  //将{}里面的与baseconfig里的融合 得到�
   entry: path.join(__dirname, '../client/server-entry.js'),
   devtool: '#source-map',    //官方推荐使用这个配置,作用是在浏览器中调试时,显示的代码和我们的项目中的代码会基本相似,而不会显示编译后的代码,以致于我们调试连自己都看不懂
   output: {
-    libraryTarget: 'commonjs2', //用来指定入口 打包出来的
-    filename: 'server-entry.js',
+    libraryTarget: 'commonjs2', //用来指定入口 打包出来的common规范
+    filename: 'server-entry[hash:8].js',
     path: path.join(__dirname, '../server-build') // 指定输出目录，输出到这个目录
   }, 
   externals: Object.keys(resquire('../package.json').dependencies),  // 让webpack打包不要打包重复的dependencies代码(package.json)   

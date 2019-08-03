@@ -2,7 +2,9 @@ const path = require('path')                            //path是Nodejs中的基
 const webpack = require("webpack")                      //引入webpack
 const merge = require('webpack-merge')        //合并webpack config
 const ExtractPlugin = require("extract-text-webpack-plugin")
+const HTMLPlugin = require('html-webpack-plugin')
 const baseConfig = require('./webpack.config.base')
+const VueclientPlugin = require('vue-server-renderer/client-plugin')
 
 const isDev = process.env.NODE_ENV === "development"    //判断是否为测试环境,在启动脚本时设置的环境变量都是存在于process.env这个对象里面的
 
@@ -12,7 +14,10 @@ const defaultPluins = [  //主要为了方便才这样做 因为在dev和非dev�
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
   }),
-  new HTMLPlugin()                                //引入HTMLPlugin    
+  new HTMLPlugin({
+    template: path.join(__dirname, 'template.html')
+  }),                                //引入HTMLPlugin    
+  new VueclientPlugin()
 ]
  
 const devServer = {                                //这个devServer的配置是在webpack2.x以后引入的,1.x是没有的
@@ -37,7 +42,7 @@ if (isDev) {  //开发环境配置
     module: {
       rules: [
         {
-          test: /\.styl/,
+          test: /\.styl$/,
           use: [
             'style-loader',                     //将css写入到html中去
             'css-loader',                       //css-loader处理css
@@ -69,7 +74,7 @@ if (isDev) {  //开发环境配置
     },
     modules: {
       rules: {
-        test: /\.styl/,
+        test: /\.styl$/,
         use: ExtractPlugin.extract({
           fallback: 'style-loader',
           use: [
